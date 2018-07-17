@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="moduloAngular">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/estilo.css" />
+</head>
+<body ng-controller="mainController as $ctrl">
+    <div>
+        <input type="text" ng-model="$ctrl.mensagem" placeholder="Forneça um curso">
+        <p>Você esta fazendo curso de <span ng-bind="$ctrl.mensagem"></span></p>
+        <button id="btnMensagem" ng-click="$ctrl.alterarCurso(); $ctrl.verMsg($ctrl.mensagem)">Alterar Curso</button>
+    </div>
+
+    <div>
+        <h3>Alunos</h3>
+        <div ng-repeat="aluno in $ctrl.alunosArray">
+            <span ng-bind="aluno"></span>
+        </div>
+        <h3>Objetos Alunos</h3>
+        <div ng-repeat="aluno in $ctrl.alunosObj" ng-class="$ctrl.verificaStatus(aluno.status)">
+            <div id="nome{{aluno.nome}}">
+                <span style="font-weight: bold">Nome: </span><span ng-bind="aluno.nome"></span><br>
+                <span style="font-weight: bold">Linguagem: </span><span ng-bind="aluno.linguagem"></span><br>
+                <button ng-click="$ctrl.esconder(aluno.nome)">Esconder Aluno</button>
+            </div>
+        </div>
+    </div>
+    <button id="btn" ng-click="$ctrl.mudaDisplay()">Esconder</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script src="js/angularComponente.js"></script>
+</body>
+</html>
